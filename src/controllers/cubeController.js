@@ -1,12 +1,12 @@
 const express = require('express');
 const Cube = require('../models/Cube');
-const router = express.Router();
 const cubeService = require('../services/cubeService');
+
+const router = express.Router();
 
 function renderCreateCubePage(req, res) {
     res.render('create')
 }
-
 
 function createCube(req, res) {
     const { name, description, imageUrl, difficultyLevel } = { ...req.body };
@@ -17,7 +17,9 @@ function createCube(req, res) {
 }
 
 function renderCubeDetailsPage(req, res) {
-    res.end()
+    const cube = cubeService.getCubeById(req.params.id)
+
+    res.render('details', { cube })
 }
 
 
