@@ -12,10 +12,31 @@ const addCube = (cube) => {
 
 const getAllCubes = () => cubesDB;
 
-const getCubeById = (id) => cubesDB.find(cube => cube._id === id)
+const getCubeById = (id) => cubesDB.find(cube => cube._id === id);
 
+const searchCubes = ({search, from, to}) => {
+    let foundCubes = cubesDB.filter(cube => cube.name.includes(search));
+
+    Number(from);
+    Number(to);
+
+    if (!from || from <= 0) {
+        foundCubes = foundCubes.filter(cube => Number(cube.difficultyLevel) > 0)    
+    } else {
+        foundCubes = foundCubes.filter(cube => Number(cube.difficultyLevel) >= from)    
+
+    }
+    if (!to || to <= 0) {
+        foundCubes = foundCubes.filter(cube => Number(cube.difficultyLevel) < 7)    
+    } else {
+        foundCubes = foundCubes.filter(cube => Number(cube.difficultyLevel) <= to)    
+    }
+    console.log(foundCubes);
+    return foundCubes;
+};
 module.exports = {
     addCube,
     getAllCubes,
-    getCubeById
+    getCubeById,
+    searchCubes
 }

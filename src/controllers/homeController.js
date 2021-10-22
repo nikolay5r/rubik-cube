@@ -8,6 +8,14 @@ function renderHomePage(req, res) {
     res.render('index', { cubes })
 }
 
-router.all('/', renderHomePage);
+router.get('/', renderHomePage);
+router.post('/', (req, res) => {
+    const cubes = cubeService.searchCubes(req.body)
+    if (cubes === []) {
+        res.get('/');
+    } else {
+        res.render('index', { cubes })
+    }
+})
 
 module.exports = router;
