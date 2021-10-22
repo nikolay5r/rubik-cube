@@ -6,7 +6,9 @@ const PORT = 5000;
 
 const app = express();
 
-initHandlebars(app)
+initHandlebars(app);
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.all('/', (req, res) => {
     res.render('index')
