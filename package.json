@@ -1,0 +1,28 @@
+{
+  "name": "rubik-cube",
+  "version": "1.0.0",
+  "description": "Softuni workshop exercise",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikolay5r/rubik-cube.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikolay5r/rubik-cube/issues"
+  },
+  "homepage": "https://github.com/nikolay5r/rubik-cube#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
