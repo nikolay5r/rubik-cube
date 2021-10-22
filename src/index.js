@@ -7,6 +7,8 @@ const PORT = 5000;
 
 const app = express();
 
+app.use(express.urlencoded({extended: true}))
+
 initHandlebars(app);
 
 app.use(express.static(path.join(__dirname, 'public')))
