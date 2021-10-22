@@ -12,7 +12,10 @@ const addCube = (cube) => {
 
 const getAllCubes = () => cubesDB;
 
+const getCubeById = (id) => cubesDB.filter(cube => cube._id === id)[0]
+
 module.exports = {
     addCube,
-    getAllCubes
+    getAllCubes,
+    getCubeById
 }

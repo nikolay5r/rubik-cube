@@ -17,12 +17,12 @@ function createCube(req, res) {
 }
 
 function renderCubeDetailsPage(req, res) {
-
+    res.end()
 }
 
 
 router.get('/create', renderCreateCubePage);
 router.post('/create', createCube);
-router.get('/details/:id')
+router.get('/details/:id', renderCubeDetailsPage);
 
 module.exports = router;
