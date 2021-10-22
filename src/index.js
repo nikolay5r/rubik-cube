@@ -10,8 +10,6 @@ initHandlebars(app);
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.all('/', (req, res) => {
-    res.render('index')
-})
+
 
 app.listen(PORT, () => console.log(`App is running on http://localhost:${PORT}`))
