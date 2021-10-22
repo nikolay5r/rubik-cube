@@ -1,5 +1,3 @@
-const cubesDB = require('../data/cubes');
-
 class Cube {
     constructor(name, description, imageUrl, difficultyLevel) {
         this.name = name,
