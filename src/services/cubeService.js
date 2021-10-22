@@ -31,7 +31,6 @@ const searchCubes = ({search, from, to}) => {
     } else {
         foundCubes = foundCubes.filter(cube => Number(cube.difficultyLevel) <= to)    
     }
-    console.log(foundCubes);
     return foundCubes;
 };
 module.exports = {
