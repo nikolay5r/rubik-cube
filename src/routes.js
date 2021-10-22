@@ -1,5 +1,8 @@
-const renderHomePage = require("./controllers/homeController");
+const homeController = require("./controllers/homeController");
+const express = require('express');
 
-module.exports = (app) => {
-    renderHomePage(app)
-}
+const router = express.Router();
+
+router.use(homeController);
+
+module.exports = router;

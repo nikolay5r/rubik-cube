@@ -2,10 +2,10 @@ const express = require('express');
 
 const router = express.Router()
 
-function renderHomePage(req, res) {
+function renderCreateCubePage(req, res) {
     res.render('index')
 } 
 
-router.all('/', renderHomePage);
+router.get('/', renderCreateCubePage);
 
 module.exports = router;
