@@ -10,8 +10,9 @@ const router = express.Router();
 
 router.use(homeController);
 router.use(cubeController);
-router.use(aboutController)
-router.use(errorController)
-router.use(detailsController)
+router.use(aboutController);
+router.use(detailsController);
+
+router.use(errorController);
 
 module.exports = router;

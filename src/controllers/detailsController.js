@@ -6,9 +6,9 @@ const router = express.Router();
 function renderCubeDetailsPage(req, res) {
     const cube = cubeService.getCubeById(req.params.id)
 
-    res.render('details', { cube })
+    res.render('details')
 }
 
-router.get('/details/:id', renderCubeDetailsPage);
+router.get('/details', renderCubeDetailsPage);
 
 module.exports = router;

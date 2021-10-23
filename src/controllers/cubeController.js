@@ -16,7 +16,6 @@ function createCube(req, res) {
         .then(() => res.redirect('/'))
 }
 
-
 router.get('/create', renderCreateCubePage);
 router.post('/create', createCube);
 
