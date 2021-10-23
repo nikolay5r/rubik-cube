@@ -1,20 +1,19 @@
 const cubesDB = require('../data/cubes.json');
 const fs = require('fs/promises');
 const path = require('path');
-const uniqid = require('uniqid');
+const Cube = require('../models/Cube');
+const cubeService = require('../services/cubeService');
 
-const addCube = (cube) => {
-    cube._id = uniqid();
-    cubesDB.push(cube);
-
-    return fs.writeFile(path.join(__dirname, '../data/cubes.json'), JSON.stringify(cubesDB, null, 2))
+function create(name, description, imageUrl, difficultyLevel) {
+    return Cube.create({name, description, imageUrl, difficultyLevel})
 }
 
-const getAllCubes = () => cubesDB;
 
-const getCubeById = (id) => cubesDB.find(cube => cube._id === id);
+const getAllCubes = () => Cube.find({}).lean();
 
-const searchCubes = ({search, from, to}) => {
+const getCubeById = (id) => Cube.findById(id).lean();
+
+const search = ({search, from, to}) => {
     let foundCubes = cubesDB.filter(cube => cube.name.includes(search));
 
     Number(from);
@@ -31,11 +30,12 @@ const searchCubes = ({search, from, to}) => {
     } else {
         foundCubes = foundCubes.filter(cube => Number(cube.difficultyLevel) <= to)    
     }
-    return foundCubes;
+    return getAllCubes();
 };
+
 module.exports = {
-    addCube,
+    create,
     getAllCubes,
     getCubeById,
-    searchCubes
+    search
 }

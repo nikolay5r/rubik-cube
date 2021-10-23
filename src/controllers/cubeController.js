@@ -1,19 +1,21 @@
 const express = require('express');
-const Cube = require('../models/Cube');
 const cubeService = require('../services/cubeService');
+
 
 const router = express.Router();
 
-function renderCreateCubePage(req, res) {
+function renderCreateCubePage(req, res, next) {
     res.render('createCube')
 }
 
 function createCube(req, res) {
-    const { name, description, imageUrl, difficultyLevel } = { ...req.body };
-    const cube = new Cube(name, description, imageUrl, difficultyLevel);
+    const { name, description, imageUrl, difficultyLevel } = { ...req.body }
 
-    cubeService.addCube(cube)
+    Number(difficultyLevel)
+
+    cubeService.create(name, description, imageUrl, difficultyLevel)
         .then(() => res.redirect('/'))
+        .catch((err) => console.log('Error:', err))
 }
 
 router.get('/create', renderCreateCubePage);
