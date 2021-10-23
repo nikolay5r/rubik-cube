@@ -1,9 +1,10 @@
 const express = require('express');
 const path = require('path');
-const initHandlebars = require('./config/handlebarsConfig');
 const routes = require('./routes');
 
-const PORT = 5000;
+const config = require('./config/config.json').development;
+const initHandlebars = require('./config/handlebarsConfig');
+const initDatabase = require('./config/databaseConfig')
 
 const app = express();
 
@@ -14,4 +15,10 @@ initHandlebars(app);
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(routes)
 
-app.listen(PORT, () => console.log(`App is running on http://localhost:${PORT}`))
+initDatabase(config.DB_CONNECTION_STRING)
+    .then(() => {
+        app.listen(config.PORT, () => console.log(`App is running on http://localhost:${config.PORT}`))
+    })
+    .catch((err) => {
+        console.log('App failed:', err);
+    })
