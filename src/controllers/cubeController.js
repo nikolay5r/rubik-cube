@@ -5,7 +5,7 @@ const cubeService = require('../services/cubeService');
 const router = express.Router();
 
 function renderCreateCubePage(req, res) {
-    res.render('create')
+    res.render('createCube')
 }
 
 function createCube(req, res) {
@@ -16,15 +16,8 @@ function createCube(req, res) {
         .then(() => res.redirect('/'))
 }
 
-function renderCubeDetailsPage(req, res) {
-    const cube = cubeService.getCubeById(req.params.id)
-
-    res.render('details', { cube })
-}
-
 
 router.get('/create', renderCreateCubePage);
 router.post('/create', createCube);
-router.get('/details/:id', renderCubeDetailsPage);
 
 module.exports = router;
