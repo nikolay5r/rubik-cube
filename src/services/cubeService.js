@@ -7,6 +7,10 @@ const getAllCubes = () => Cube.find({}).lean();
 
 const getCubeById = (id) => Cube.findById(id).lean();
 
+const attachAccessory = (cubeId, accessoryId) => {
+    
+}
+
 const search = ({search, from, to}) => {
     let foundCubes = cubesDB.filter(cube => cube.name.includes(search));
 
@@ -31,5 +35,6 @@ module.exports = {
     create,
     getAllCubes,
     getCubeById,
+    attachAccessory,
     search
 }
