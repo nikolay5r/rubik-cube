@@ -4,7 +4,10 @@ const create = (name, description, imageUrl) => Accessory.create({ name, descrip
 
 const getById = (id) => Accessory.findById(id).lean();
 
+const getAll = () => Accessory.find({}).lean();
+
 module.exports = {
     create,
-    getById
+    getById,
+    getAll
 }
