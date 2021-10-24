@@ -1,8 +1,5 @@
 const cubesDB = require('../data/cubes.json');
-const fs = require('fs/promises');
-const path = require('path');
 const Cube = require('../models/Cube');
-const cubeService = require('../services/cubeService');
 
 function create(name, description, imageUrl, difficultyLevel) {
     return Cube.create({name, description, imageUrl, difficultyLevel})
