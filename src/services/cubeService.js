@@ -3,9 +3,9 @@ const Cube = require('../models/Cube');
 
 const create = (name, description, imageUrl, difficultyLevel) => Cube.create({name, description, imageUrl, difficultyLevel});
 
-const getAllCubes = () => Cube.find({}).lean();
+const getAll = () => Cube.find({}).lean();
 
-const getCubeById = (id) => Cube.findById(id).lean();
+const getById = (id) => Cube.findById(id).lean();
 
 const attachAccessory = (cubeId, accessoryId) => {
     
@@ -28,13 +28,13 @@ const search = ({search, from, to}) => {
     } else {
         foundCubes = foundCubes.filter(cube => Number(cube.difficultyLevel) <= to)    
     }
-    return getAllCubes();
+    return getAll();
 };
 
 module.exports = {
     create,
-    getAllCubes,
-    getCubeById,
+    getAllCubes: getAll,
+    getCubeById: getById,
     attachAccessory,
     search
 }
