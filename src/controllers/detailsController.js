@@ -4,9 +4,10 @@ const cubeService = require('../services/cubeService');
 const router = express.Router();
 
 function renderCubeDetailsPage(req, res) {
-    const cube = cubeService.getCubeById(req.params.id)
-
-    res.render('details', { cube })
+    cubeService.getCubeById(req.params.id)
+        .then((cube) => res.render('details', { cube }))
+        .catch((err) => console.log(err))
+    
 }
 
 router.get('/details/:id', renderCubeDetailsPage);
