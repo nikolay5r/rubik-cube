@@ -8,7 +8,7 @@ const getAll = () => Cube.find({}).lean();
 
 const getById = (id) => Cube.findById(id).lean();
 
-const attachAccessory = async (cubeId, accessoryId) => {
+const attach = async (cubeId, accessoryId) => {
     let cube = await getById(cubeId);
     let accessory = await accessoryService.getById(accessoryId);
 
@@ -41,6 +41,6 @@ module.exports = {
     create,
     getAll,
     getById,
-    attachAccessory,
+    attach,
     search
 }
