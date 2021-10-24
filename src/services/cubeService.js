@@ -1,10 +1,7 @@
 const cubesDB = require('../data/cubes.json');
 const Cube = require('../models/Cube');
 
-function create(name, description, imageUrl, difficultyLevel) {
-    return Cube.create({name, description, imageUrl, difficultyLevel})
-}
-
+const create = (name, description, imageUrl, difficultyLevel) => Cube.create({name, description, imageUrl, difficultyLevel});
 
 const getAllCubes = () => Cube.find({}).lean();
 
