@@ -5,13 +5,17 @@ const cubeController = require("./controllers/cubeController")
 const aboutController = require("./controllers/aboutController")
 const errorController = require("./controllers/errorController")
 const detailsController = require("./controllers/detailsController")
+const accessoryController = require("./controllers/accessoryController")
+
 
 const router = express.Router();
 
 router.use(homeController);
-router.use(cubeController);
+router.use('/cube', cubeController);
 router.use(aboutController);
 router.use(detailsController);
+router.use('/accessory', accessoryController);
+
 
 router.use(errorController);
 
