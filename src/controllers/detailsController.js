@@ -5,7 +5,11 @@ const router = express.Router();
 
 function renderCubeDetailsPage(req, res) {
     cubeService.getById(req.params.id)
-        .then((cube) => res.render('details', { cube }))
+        .then((cube) => {
+            let accessories = cube.accessories;
+
+            res.render('details', { cube, accessories })
+        })
         .catch((err) => console.log(err))
     
 }
