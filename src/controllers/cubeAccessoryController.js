@@ -6,7 +6,7 @@ const router = express.Router();
 
 async function renderAttachPage(req, res) {
     let cube = await cubeService.getById(req.params.id)
-    let accessories = await accessoryService.getAll()
+    let accessories = await accessoryService.getAllWithout(cube.accessories.map(x => x._id))
 
     res.render('attachAccessory', { cube, accessories })
 }
