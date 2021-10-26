@@ -1,20 +1,19 @@
-const cubesDB = require('../data/cubes.json');
 const Cube = require('../models/Cube');
-const accessoryService = require('./accessoryService')
+const Accessory = require('../models/Accessory');
 
-const create = (name, description, imageUrl, difficultyLevel) => Cube.create({name, description, imageUrl, difficultyLevel});
+const create = (name, description, imageUrl, difficultyLevel) => Cube.create({ name, description, imageUrl, difficultyLevel });
 
 const getAll = () => Cube.find({}).lean();
 
-const getById = (id) => Cube.findById(id).lean();
+const getById = (id) => Cube.findById(id).populate('accessories').lean();
 
 const attach = async (cubeId, accessoryId) => {
-    let cube = await getById(cubeId);
-    let accessory = await accessoryService.getById(accessoryId);
+    let cube = await Cube.findById(cubeId);
+    let accessory = await Accessory.findById(accessoryId);
 
     cube.accessories.push(accessory);
 
-    return cube.save();
+    return cube.save()
 }
 
 const search = ({search, from, to}) => {

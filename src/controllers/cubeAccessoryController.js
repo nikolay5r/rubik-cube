@@ -12,11 +12,14 @@ async function renderAttachPage(req, res) {
 }
 
 function attachAccessory(req, res) {
-    console.log(req)
-    res.redirect('/')
+    const cubeId = req.params.id;
+    const accessoryId = req.body.accessory;
+
+    cubeService.attach(cubeId, accessoryId)
+        .then(() => res.redirect(`/details/${cubeId}`))
 }
 
-router.get('/attach/:id', renderAttachPage)
-router.post('/attach/:id', attachAccessory)
+router.get('/accessory/attach/:id', renderAttachPage)
+router.post('/accessory/attach/:id', attachAccessory)
 
 module.exports = router;
