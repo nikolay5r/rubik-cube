@@ -11,10 +11,10 @@ const accessoryController = require("./controllers/accessoryController")
 const router = express.Router();
 
 router.use(homeController);
-router.use('/cube', cubeController);
+router.use(cubeController);
 router.use(aboutController);
 router.use(detailsController);
-router.use('/accessory', accessoryController);
+router.use(accessoryController);
 
 
 router.use(errorController);

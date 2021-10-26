@@ -22,15 +22,8 @@ function createCube(req, res) {
         })
 }
 
-async function renderAttachPage(req, res) {
-    let cube = await cubeService.getById(req.params.id)
-    let accessories = await accessoryService.getAll()
 
-    res.render('attachAccessory', { cube, accessories })
-}
-
-router.get('/create', renderCreatePage);
-router.post('/create', createCube);
-router.get('/attach/:id', renderAttachPage)
+router.get('/cube/create', renderCreatePage);
+router.post('/cube/create', createCube);
 
 module.exports = router;

@@ -19,7 +19,7 @@ function createAccessory(req, res) {
         })
 }
 
-router.get('/create', renderCreatePage)
-router.post('/create', createAccessory)
+router.get('/accessory/create', renderCreatePage)
+router.post('/accessory/create', createAccessory)
 
 module.exports = router;
