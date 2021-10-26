@@ -9,10 +9,14 @@ function renderHomePage(req, res) {
         .catch((err) => console.log('Error:', err))
 }
 
+function searchCubes(req, res) {
+    const { search, from, to } = { ...req.body}
+
+    cubeService.search(search, from, to)
+        .then((cubes) => res.render('index', { cubes }))
+}
+
 router.get('/', renderHomePage);
-// router.post('/', (req, res) => {
-//     const cubes = cubeService.searchCubes(req.body)
-//         res.render('index', { cubes })
-// })
+router.post('/', searchCubes)
 
 module.exports = router;

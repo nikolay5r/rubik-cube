@@ -16,24 +16,22 @@ const attach = async (cubeId, accessoryId) => {
     return cube.save()
 }
 
-const search = ({search, from, to}) => {
-    let foundCubes = cubesDB.filter(cube => cube.name.includes(search));
+const search = (search, from, to) => {
+    from = from === '' || from <= 0 ? 1 : Number(from)
+    to = to === '' || to <= 0 || to >= 6 ? 6 : Number(to)
 
-    Number(from);
-    Number(to);
-
-    if (!from || from <= 0) {
-        foundCubes = foundCubes.filter(cube => Number(cube.difficultyLevel) > 0)    
-    } else {
-        foundCubes = foundCubes.filter(cube => Number(cube.difficultyLevel) >= from)    
-
+    if (from > to) {
+        return Cube.find({}).lean();
     }
-    if (!to || to <= 0) {
-        foundCubes = foundCubes.filter(cube => Number(cube.difficultyLevel) < 7)    
-    } else {
-        foundCubes = foundCubes.filter(cube => Number(cube.difficultyLevel) <= to)    
-    }
-    return getAll();
+
+    return Cube.find({
+        name: { $regex: search },
+        difficultyLevel: {
+            $gte: from,
+            $lte: to
+        }
+    }).lean();
+
 };
 
 module.exports = {
