@@ -4,7 +4,7 @@ const cubeService = require('../../services/cubeService');
 const router = express.Router();
 
 function renderCreatePage(req, res) {
-    res.render('cube/createCube')
+    res.render('cube/create')
 }
 
 function createCube(req, res) {
