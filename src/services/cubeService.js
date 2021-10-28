@@ -40,11 +40,15 @@ const edit = async (id, newName, newDescription, newImageUrl, newDifficultyLevel
     return cube.save()
 }
 
+const del = async (id) => Cube.findByIdAndDelete(id);
+
+
 module.exports = {
     create,
     getAll,
     getById,
     attach,
     search,
-    edit
+    edit,
+    del
 }

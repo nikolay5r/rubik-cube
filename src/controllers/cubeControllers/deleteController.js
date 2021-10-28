@@ -9,6 +9,12 @@ async function renderDeletePage(req, res) {
     res.render('cube/delete', { cube })
 }
 
+async function deleteCube(req, res) {
+    cubeService.del(req.params.id)
+        .then(() => res.redirect('/'))
+}
+
 router.get('/cube/delete/:id', renderDeletePage)
+router.post('/cube/delete/:id', deleteCube)
 
 module.exports = router;
