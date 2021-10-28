@@ -1,4 +1,5 @@
 const express = require('express');
+const authService = require('../services/authService')
 
 const router = express.Router();
 
@@ -11,9 +12,17 @@ function renderRegisterPage(req, res) {
 }
 
 function register(req, res) {
-    
+    const { username, password, repeatPassword } = { ...req.body };
+    authService.register(username, password, repeatPassword)
+        .then((token) => {
+            res.cookie('REGISTER_INFO', token);
+            res.redirect('/')
+        })
+        .catch((err) => {
+            res.status(400)
+                .send(err)
+        })
 
-    res.render('register')
 }
 
 router.get('/login', renderLoginPage)
