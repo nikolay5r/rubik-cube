@@ -9,6 +9,19 @@ async function renderEditPage(req, res) {
     res.render('cube/edit', { cube })
 }
 
+async function editCube(req, res) {
+    const cubeId = req.params.id;
+    const newName = req.body.name;
+    const newDescription = req.body.description;
+    const newImageUrl = req.body.imageUrl;
+    const newDifficultyLevel = req.body.difficultyLevel;
+
+    cubeService.edit(cubeId, newName, newDescription, newImageUrl, newDifficultyLevel)
+        .then((cube) => res.redirect(`/details/${cube._id}`))
+}
+
 router.get('/cube/edit/:id', renderEditPage)
+router.post('/cube/edit/:id', editCube)
+
 
 module.exports = router;

@@ -34,10 +34,17 @@ const search = (search, from, to) => {
 
 };
 
+const edit = async (id, newName, newDescription, newImageUrl, newDifficultyLevel) => {
+    let cube = await Cube.findByIdAndUpdate(id, { name: newName, description: newDescription, imageUrl: newImageUrl, difficultyLevel: newDifficultyLevel })
+
+    return cube.save()
+}
+
 module.exports = {
     create,
     getAll,
     getById,
     attach,
-    search
+    search,
+    edit
 }
