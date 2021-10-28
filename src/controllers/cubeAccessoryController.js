@@ -8,7 +8,7 @@ async function renderAttachPage(req, res) {
     let cube = await cubeService.getById(req.params.id)
     let accessories = await accessoryService.getAllWithout(cube.accessories.map(x => x._id))
 
-    res.render('attachAccessory', { cube, accessories })
+    res.render('accessory/attachAccessory', { cube, accessories })
 }
 
 function attachAccessory(req, res) {

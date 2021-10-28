@@ -8,7 +8,7 @@ function renderCubeDetailsPage(req, res) {
         .then((cube) => {
             let accessories = cube.accessories;
 
-            res.render('details', { cube, accessories })
+            res.render('cube/details', { cube, accessories })
         })
         .catch((err) => console.log(err))
     

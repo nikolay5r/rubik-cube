@@ -13,6 +13,7 @@ app.use(express.urlencoded({extended: true}))
 initHandlebars(app);
 
 app.use(express.static(path.join(__dirname, 'public')))
+
 app.use(routes)
 
 initDatabase(config.DB_CONNECTION_STRING)
