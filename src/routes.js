@@ -1,7 +1,7 @@
 const express = require('express');
 
 const homeController = require("./controllers/homeController");
-const cubeController = require("./controllers/cubeControllers/cubeRoutes")
+const cubeController = require("./controllers/cubeController")
 const aboutController = require("./controllers/aboutController")
 const errorController = require("./controllers/errorController")
 const detailsController = require("./controllers/detailsController")
@@ -20,8 +20,6 @@ router.use(aboutController);
 router.use(detailsController);
 router.use(accessoryController);
 router.use(cubeAccessoryController);
-
-
 router.use(errorController);
 
 module.exports = router;
