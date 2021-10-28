@@ -7,11 +7,13 @@ const errorController = require("./controllers/errorController")
 const detailsController = require("./controllers/detailsController")
 const accessoryController = require("./controllers/accessoryController")
 const cubeAccessoryController = require("./controllers/cubeAccessoryController")
+const loginController = require("./controllers/loginController")
 const registerController = require("./controllers/registerController")
 
 const router = express.Router();
 
 router.use(homeController);
+router.use(loginController);
 router.use(registerController);
 router.use(cubeController);
 router.use(aboutController);
