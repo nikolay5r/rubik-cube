@@ -4,15 +4,18 @@ const cubeService = require('../services/cubeService');
 const router = express.Router();
 
 function renderCreatePage(req, res) {
+    console.log(req.user)
     res.render('cube/create')
 }
 
 function createCube(req, res) {
     const { name, description, imageUrl, difficultyLevel } = { ...req.body }
+    
+    const creator = req.user.username;
 
     Number(difficultyLevel)
 
-    cubeService.create(name, description, imageUrl, difficultyLevel)
+    cubeService.create(name, description, imageUrl, difficultyLevel, creator)
         .then(() => res.redirect('/'))
         .catch((err) => {
             res.status(400)

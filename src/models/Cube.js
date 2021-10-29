@@ -27,16 +27,18 @@ const cubeSchema = new mongoose.Schema({
         max: 6,
         required: [true, 'Input field is not filled']
     },
+    creator: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     accessories: [
         {
             type: mongoose.Types.ObjectId,
             ref: 'Accessory'
         }
-    ],
-    creator: {
-        type: mongoose.Types.ObjectId,
-        ref: 'User'
-    }
+    ]
+
 })
 
 

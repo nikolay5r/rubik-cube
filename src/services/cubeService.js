@@ -1,7 +1,13 @@
 const Cube = require('../models/Cube');
 const Accessory = require('../models/Accessory');
+const User = require('../models/User');
 
-const create = (name, description, imageUrl, difficultyLevel) => Cube.create({ name, description, imageUrl, difficultyLevel });
+
+const create = async (name, description, imageUrl, difficultyLevel, creator) => {
+    const user = await User.findOne({ username: creator }).lean()
+
+    return Cube.create({ name, description, imageUrl, difficultyLevel, creator: user})
+};
 
 const getAll = () => Cube.find({}).lean();
 
