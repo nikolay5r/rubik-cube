@@ -6,7 +6,7 @@ const routes = require('../routes');
 const config = require('./config.json').development;
 const initHandlebars = require('./handlebarsConfig');
 const initDatabase = require('./databaseConfig');
-
+const { auth } = require('../middlewares/authMiddleware')
 
 function setupServer(app) {
     app.use(express.static(path.join(__dirname, '../public')))
@@ -14,10 +14,12 @@ function setupServer(app) {
     app.use(express.urlencoded({ extended: true }))
 
     initHandlebars(app);
-
+    
     app.use(cookieParser())
-
-    app.use(routes)
+    
+    app.use(auth);
+    
+    app.use(routes);
 
     initDatabase(config.DB_CONNECTION_STRING)
         .then(() => {
