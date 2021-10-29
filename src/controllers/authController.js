@@ -41,12 +41,14 @@ function login(req, res) {
 }
 
 function logout(req, res) {
-    
+    res.clearCookie(config.AUTH_COOKIE)
+        .redirect('/')
 }
 
 router.get('/login', renderLoginPage)
 router.post('/login', login)
 router.get('/register', renderRegisterPage)
 router.post('/register', register)
+router.get('/logout', logout)
 
 module.exports = router;
