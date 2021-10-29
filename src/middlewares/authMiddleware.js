@@ -7,17 +7,17 @@ exports.auth = (req, res, next) => {
 
     jwt.verify(token, config.SECRET, (err, decodedPayload) => {
         if (err) {
-            return res.status(401)
+            return res.status(401), next()
         }
 
         let user = userService.getByUsername(decodedPayload.username);
 
         if (!user) {
-            return res.status(401)
+            return res.status(401), next()
         }
 
         req.user = decodedPayload;
-        
+        res.locals.user = decodedPayload;
         next()
     })
 }
