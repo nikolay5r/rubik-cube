@@ -8,9 +8,10 @@ function renderCubeDetailsPage(req, res) {
     cubeService.getById(req.params.id)
         .then((cube) => {
             let accessories = cube.accessories;
-            let isOwner = authService.isOwn(cube, req.user)
-
-            res.render('cube/details', { cube, accessories, isOwner })
+            authService.isOwn(cube, req.user)
+                .then((isOwner) => {
+                    res.render('cube/details', { cube, accessories, isOwner })
+                })
         })
         .catch((err) => console.log(err))
     
