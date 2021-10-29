@@ -11,7 +11,7 @@ const create = async (name, description, imageUrl, difficultyLevel, creator) => 
 
 const getAll = () => Cube.find({}).lean();
 
-const getById = (id) => Cube.findById(id).populate('accessories').lean();
+const getById = (id) => Cube.findById(id).populate(['accessories', 'creator']).lean();
 
 const attach = async (cubeId, accessoryId) => {
     let cube = await Cube.findById(cubeId);

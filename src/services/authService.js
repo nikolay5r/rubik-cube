@@ -1,7 +1,8 @@
 const userService = require('./userService');
+const cubeService = require('./cubeService');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const config = require('../config/config.json')
+const config = require('../config/config.json').development
 
 const register = async (username, password, repeatPassword) => {
     const user = await userService.getByUsername(username);
@@ -34,10 +35,14 @@ const login = async (username, password) => {
     return jwt.sign({ username: user.username, password: user.password }, config.SECRET, { expiresIn: '3h' })
 }
 
+const isOwn = async (cube, user) => {
+    return cube.creator.username === user.username;
+}
 
 const authService = {
     register,
-    login
+    login,
+    isOwn
 }
 
 module.exports = authService;
