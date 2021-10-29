@@ -1,8 +1,7 @@
 const userService = require('./userService');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
-
-const SECRET = 'asjdjkasjkldjklasmdlsasokdlas';
+const jwt = require('jsonwebtoken');
+const config = require('../config/config.json')
 
 const register = async (username, password, repeatPassword) => {
     const user = await userService.getByUsername(username);
@@ -18,7 +17,7 @@ const register = async (username, password, repeatPassword) => {
     const hashPassword = await bcrypt.hash(password, 9);
     await userService.create(username, hashPassword)
 
-    return jwt.sign({ username, hashPassword }, SECRET, { expiresIn: '3h' })
+    return jwt.sign({ username, hashPassword }, config.SECRET, { expiresIn: '3h' })
 }
 
 const login = async (username, password) => {
@@ -32,7 +31,7 @@ const login = async (username, password) => {
         throw 'Username or Password is incorrect!';
     }
 
-    return jwt.sign({ username: user.username, password: user.password }, SECRET, { expiresIn: '3h' })
+    return jwt.sign({ username: user.username, password: user.password }, config.SECRET, { expiresIn: '3h' })
 }
 
 

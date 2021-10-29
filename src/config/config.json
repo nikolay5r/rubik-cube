@@ -1,7 +1,8 @@
 {
     "development": {
         "PORT": "5000",
-        "DB_CONNECTION_STRING": "mongodb://localhost:27017/cubes"
+        "DB_CONNECTION_STRING": "mongodb://localhost:27017/cubes",
+        "SECRET": "asjdjkasjkldjklasmdlsasokdlas"
     },
     "production": {
         "PORT": "80"
