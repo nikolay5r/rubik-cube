@@ -1,5 +1,6 @@
 const express = require('express');
 const authService = require('../services/authService')
+const config = require('../config/config.json').development
 
 const router = express.Router();
 
@@ -15,8 +16,8 @@ function register(req, res) {
     const { username, password, repeatPassword } = { ...req.body };
     authService.register(username, password, repeatPassword)
         .then((token) => {
-            res.cookie('USER_INFO', token);
-            res.redirect('/')
+            res.cookie(config.AUTH_COOKIE, token)
+                .redirect('/')
         })
         .catch((err) => {
             res.status(400)
@@ -29,8 +30,8 @@ function login(req, res) {
     const { username, password } = { ...req.body };
     authService.login(username, password)
         .then((token) => {
-            res.cookie('USER_INFO', token);
-            res.redirect('/')
+            res.cookie(config.AUTH_COOKIE, token)
+                .redirect('/')
         })
         .catch((err) => {
             console.log(err)
