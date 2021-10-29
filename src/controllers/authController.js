@@ -15,7 +15,7 @@ function register(req, res) {
     const { username, password, repeatPassword } = { ...req.body };
     authService.register(username, password, repeatPassword)
         .then((token) => {
-            res.cookie('REGISTER_INFO', token);
+            res.cookie('USER_INFO', token);
             res.redirect('/')
         })
         .catch((err) => {
@@ -25,8 +25,22 @@ function register(req, res) {
 
 }
 
-router.get('/login', renderLoginPage)
+function login(req, res) {
+    const { username, password } = { ...req.body };
+    authService.login(username, password)
+        .then((token) => {
+            res.cookie('USER_INFO', token);
+            res.redirect('/')
+        })
+        .catch((err) => {
+            console.log(err)
+            res.status(400)
+                .send(err)
+        })
+}
 
+router.get('/login', renderLoginPage)
+router.post('/login', login)
 router.get('/register', renderRegisterPage)
 router.post('/register', register)
 

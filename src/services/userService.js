@@ -7,7 +7,6 @@ const getByUsername = (name) => User.findOne({ username: name }).lean();
 const userService = {
     create,
     getByUsername,
-
 }
 
 module.exports = userService;
