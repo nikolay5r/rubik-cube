@@ -16,7 +16,7 @@ function register(req, res) {
     const { username, password, repeatPassword } = { ...req.body };
     authService.register(username, password, repeatPassword)
         .then((token) => {
-            res.cookie(config.AUTH_COOKIE, token)
+            res.cookie(config.AUTH_COOKIE, token, { httpOnly: true })
                 .redirect('/')
         })
         .catch((err) => {
@@ -30,7 +30,7 @@ function login(req, res) {
     const { username, password } = { ...req.body };
     authService.login(username, password)
         .then((token) => {
-            res.cookie(config.AUTH_COOKIE, token)
+            res.cookie(config.AUTH_COOKIE, token, { httpOnly: true })
                 .redirect('/')
         })
         .catch((err) => {
@@ -38,6 +38,10 @@ function login(req, res) {
             res.status(400)
                 .send(err)
         })
+}
+
+function logout(req, res) {
+    
 }
 
 router.get('/login', renderLoginPage)
